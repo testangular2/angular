@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="testapp">
 <head>
   <meta charset="utf-8">
   <title>task1</title>
@@ -13,9 +13,19 @@
   <script src="js/directives.js"></script>
 
 </head>
-<body>
+<body ng-init="rootScope.sharedtest = ''">
+<div ng-controller="parentCtrl1">
+  <input type="text" id="check1" ng-model="rootScope.sharedtest"><label for="check1">{{rootScope.sharedtest}}</label><Br>
+  <div ng-controller="ChildCtrl1">
+    <input type="text" id="check3" ng-model="rootScope.sharedtest"><label for="check3">{{rootScope.sharedtest}}</label><Br>
+  </div>
+  <div ng-controller="ChildCtrl2">
+    <input type="text" id="check4" ng-model="rootScope.sharedtest"><label for="check4">{{rootScope.sharedtest}}</label><Br>
+  </div>
 
-  <div ng-view></div>
-
+</div>
+<div ng-controller="parentCtrl2">
+  <input type="text" id="check2" ng-model="rootScope.sharedtest"><label for="check2">{{rootScope.sharedtest}}</label><Br>
+</div>
 </body>
 </html>
