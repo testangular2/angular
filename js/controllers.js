@@ -2,6 +2,7 @@
 var myApp = angular.module('testapp',[]);
 
 myApp.controller('tabsCtrl', ['$scope', '$http', '$sce', function ($scope, $http, $sce) {
+    $scope.title = 'controlvalue';
     $scope.lazyLoading = function (tab_id, html_source_url) {
         if (typeof $scope.htmlfortab[tab_id] == 'undefined')
             $http({

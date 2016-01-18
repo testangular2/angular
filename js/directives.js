@@ -8,7 +8,7 @@ myApp.directive('myTabs', function () {
         scope: {},
         controller: ['$scope', function ($scope) {
             var panes = $scope.panes = [];
-
+            $scope.title = 'directivevalue';
             $scope.select = function (pane) {
                 angular.forEach(panes, function (pane) {
                     pane.selected = false;
