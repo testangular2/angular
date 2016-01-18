@@ -2,7 +2,7 @@
 <html lang="en" ng-app="testapp">
 <head>
   <meta charset="utf-8">
-  <title>task2</title>
+  <title>task4</title>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular-route.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular-resource.js"></script>
@@ -13,18 +13,8 @@
   <script src="js/directives.js"></script>
 
 </head>
-<body ng-init="$root.htmlfortab = []">
-<div ng-controller="tabsCtrl">
-    <span>{{title}} == controlvalue</span>
-  <my-tabs>
-      <my-pane title="0" ontabactivated="lazyLoading('0', '0.html')">
-        <div ng-bind-html="htmlfortab[0]"></div>
-      </my-pane>
-
-      <my-pane title="1" ontabactivated="lazyLoading('1', '1.html')">
-        <div ng-bind-html="htmlfortab[1]"></div>
-      </my-pane>
-  </my-tabs>
-</div>
+<body>
+    <setcolor></setcolor>
+    <showcolor></showcolor>
 </body>
 </html>

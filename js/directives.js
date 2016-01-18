@@ -1,43 +1,35 @@
 'use strict';
-
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
 /* Directives */
-myApp.directive('myTabs', function () {
+myApp.directive('setcolor', function () {
     return {
         restrict: 'E',
-        transclude: true,
+        scope: {},
+        controller: ['$scope', '$rootScope', function ($scope, $rootScope) {
+            $scope.generatecolor = function () {
+                $rootScope.$broadcast('generatecolor');
+            }
+        }],
+        templateUrl: 'setcolor.html'
+    };
+}).directive('showcolor', function () {
+    return {
+        require: '^setcolor',
+        restrict: 'E',
         scope: {},
         controller: ['$scope', function ($scope) {
-            var panes = $scope.panes = [];
-            $scope.title = 'directivevalue';
-            $scope.select = function (pane) {
-                angular.forEach(panes, function (pane) {
-                    pane.selected = false;
-                });
-                pane.selected = true;
-                pane.mycallBackMethod();
-            };
-
-            this.addPane = function (pane) {
-                if (panes.length === 0) {
-                    $scope.select(pane);
-                }
-                panes.push(pane);
-            };
+            var randomcolor = document.getElementById("colordiv");
+            $scope.$on('generatecolor', function () {
+                randomcolor.style.backgroundColor = getRandomColor();
+            });
         }],
-        templateUrl: 'my-tabs.html'
-    };
-}).directive('myPane', function () {
-    return {
-        require: '^myTabs',
-        restrict: 'E',
-        transclude: true,
-        scope: {
-            title: '@',
-            mycallBackMethod: '&ontabactivated'
-        },
-        link: function (scope, element, attrs, tabsCtrl) {
-            tabsCtrl.addPane(scope);
-        },
-        templateUrl: 'my-pane.html'
+        templateUrl: 'showcolor.html'
     };
 });
