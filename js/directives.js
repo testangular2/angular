@@ -1,34 +1,23 @@
 'use strict';
-function getRandomColor() {
-    var letters = '0123456789ABCDEF'.split('');
-    var color = '#';
-    for (var i = 0; i < 6; i++ ) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}
+
 /* Directives */
-myApp.directive('setcolor', function () {
+myApp.directive('setcolor', function factory(Colors) {
     return {
         restrict: 'E',
         scope: {},
-        controller: ['$scope', '$rootScope', function ($scope, $rootScope) {
-            $scope.generatecolor = function () {
-                $rootScope.$broadcast('generatecolor');
+        controller: ['$scope', function ($scope) {
+            $scope.generatecolor = function() {
+                Colors.getRandomColor();
             }
         }],
         templateUrl: 'setcolor.html'
     };
-}).directive('showcolor', function () {
+}).directive('showcolor', function factory(Colors) {
     return {
-        require: '^setcolor',
         restrict: 'E',
         scope: {},
         controller: ['$scope', function ($scope) {
-            var randomcolor = document.getElementById("colordiv");
-            $scope.$on('generatecolor', function () {
-                randomcolor.style.backgroundColor = getRandomColor();
-            });
+            $scope.Color = Colors;
         }],
         templateUrl: 'showcolor.html'
     };
