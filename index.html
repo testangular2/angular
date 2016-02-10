@@ -2,7 +2,7 @@
 <html lang="en" ng-app="testapp">
 <head>
   <meta charset="utf-8">
-  <title>task4</title>
+  <title>task6</title>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular-route.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular-resource.js"></script>
@@ -13,8 +13,13 @@
   <script src="js/directives.js"></script>
 
 </head>
-<body>
-    <setcolor></setcolor>
-    <showcolor></showcolor>
+<body ng-app="testapp">
+<div ng-controller="taskCtrl">
+{{ timeout_value }}<br />
+{{ click_value }}<br />
+  <button ng-click="change_click_value()">angular</button>
+  <button id="js">js</button>
+  <button id="jsdigest">js with digest</button>
+</div>
 </body>
 </html>
