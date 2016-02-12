@@ -2,3 +2,4 @@
 
 /* App Module */
 
+var testApp = angular.module('testApp', []);
